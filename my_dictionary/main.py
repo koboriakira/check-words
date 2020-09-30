@@ -22,5 +22,4 @@ def hello():
 
 @app.get("/analyse")
 def analyse(text: Optional[str]):
-    result: Dict[str, List[str]] = controller.analyse(text=text)
-    return result
+    return controller.analyse(text=text)

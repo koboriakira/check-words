@@ -10,6 +10,9 @@ nltk = "*"
 uvicorn = "*"
 fastapi = "*"
 ngsl = "*"
+flake8 = "*"
+autopep8 = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"
