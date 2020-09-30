@@ -12,4 +12,4 @@ RUN pip install --upgrade pip && \
 ADD nltk_setup.py /work/nltk_setup.py
 RUN python nltk_setup.py
 
-CMD ["uvicorn","xbrl_storage.main:app","--host","0.0.0.0","--port","8080"]
+CMD ["uvicorn","my_dictionary.main:app","--host","0.0.0.0","--port","8080"]
