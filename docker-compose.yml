@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - '8000:8080'
+    volumes:
+      - ./my_dictionary:/work/my_dictionary
+    command: >
+      uvicorn my_dictionary.main:app
+      --host 0.0.0.0
+      --port 8080
+      --reload
