@@ -1,6 +1,8 @@
 import nltk
+from nltk import tokenize
 from nltk.corpus import wordnet
-from typing import List, Dict
+from nltk.tree import Tree
+from typing import List, Dict, Tuple
 import re
 
 
@@ -25,7 +27,30 @@ def morphy(text: str) -> Dict[str, int]:
     return result
 
 
-# sorted(score.items(), key=lambda x: x[1])
+def pos(text: str) -> List[List[Tuple[str, str]]]:
+    sentence_tokens = tokenize.sent_tokenize(text)
+    result: List[List[Tuple[str, str]]] = []
+    for sentence in sentence_tokens:
+        tokens: List[str] = nltk.word_tokenize(sentence)
+        pos: List[Tuple[str, str]] = nltk.pos_tag(tokens)
+        result.append(pos)
+    return result
+
+
+def proper_noun(text: str) -> Dict[str, str]:
+    tokens = nltk.word_tokenize(text)
+    pos = nltk.pos_tag(tokens)
+    entities = nltk.chunk.ne_chunk(pos)
+
+    result: Dict[str, str] = {}
+    for entity in entities:
+        # 固有名詞はTree型が格納されている
+        if not isinstance(entity, Tree):
+            continue
+        label = entity.label()
+        word = entity[0][0]
+        result[word] = label
+    return result
 
 
 def _count(tokens: List[str]) -> Dict[str, int]:

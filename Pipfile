@@ -13,6 +13,9 @@ ngsl = "*"
 flake8 = "*"
 autopep8 = "*"
 pytest = "*"
+numpy = "*"
+pydantic = "*"
+googletrans = "*"
 
 [requires]
 python_version = "3.8"
