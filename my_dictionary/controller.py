@@ -10,8 +10,9 @@ def analyse(text: str) -> Dict[str, Any]:
     morphied_word_dict: Dict[str, int] = morphy(text=text)
     ngsl_word_list, not_ngsl_word_list = classify_into_ngsl(
         morphied_word_dict.keys())
-    pos_text: List[List[Tuple[str, str]]] = pos(text=text)
     proper_nouns: Dict[str, str] = proper_noun(text=text)
+    pos_text: List[List[Tuple[str, str]]] = pos(
+        text=text, proper_nouns=proper_nouns)
     return {
         "pos_text": pos_text,
         "morphied_word_dict": morphied_word_dict,

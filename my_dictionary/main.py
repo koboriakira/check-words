@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, Dict, List
 from my_dictionary import controller
 from pydantic import BaseModel
+from translate_bookmark.translate_bookmark import get_text
 
 
 app = FastAPI()
@@ -18,6 +19,10 @@ app.add_middleware(
 
 class Data(BaseModel):
     text: str
+
+
+class Url(BaseModel):
+    url: str
 
 
 @app.get("/")
@@ -36,6 +41,15 @@ def analyse(data: Data):
     return controller.analyse(text=data.text)
 
 
+@app.post("/analyse-site/")
+def analyse_site(data: Url):
+    print(data.url)
+    text = get_text(url=data.url)
+    result = controller.analyse(text=text)
+    result['text'] = text
+    return result
+
+
 @app.get("/read")
 def read(text: Optional[str]):
     return controller.read(text=text)
@@ -43,6 +57,7 @@ def read(text: Optional[str]):
     # paragraphs = text.split('\n')
     # print(len(paragraphs))
     # return text
+
 
 @app.get("/translate/{word}")
 def translate(word: str):

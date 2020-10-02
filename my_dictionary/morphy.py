@@ -27,12 +27,14 @@ def morphy(text: str) -> Dict[str, int]:
     return result
 
 
-def pos(text: str) -> List[List[Tuple[str, str]]]:
+def pos(text: str, proper_nouns: Dict[str,
+                                      str]) -> List[List[Tuple[str, str]]]:
     sentence_tokens = tokenize.sent_tokenize(text)
     result: List[List[Tuple[str, str]]] = []
     for sentence in sentence_tokens:
         tokens: List[str] = nltk.word_tokenize(sentence)
         pos: List[Tuple[str, str]] = nltk.pos_tag(tokens)
+        pos = _convert_proper_nouns(pos, proper_nouns)
         result.append(pos)
     return result
 
@@ -65,3 +67,13 @@ def _count(tokens: List[str]) -> Dict[str, int]:
 
 def _is_number(token: str) -> bool:
     return re.fullmatch(r'^\d*$', token) is not None
+
+
+def _convert_proper_nouns(
+        pos: List[Tuple[str, str]], proper_nouns: Dict[str, str]) -> List[Tuple[str, str]]:
+    result_pos: List[Tuple[str, str]] = []
+    for pos_el in pos:
+        if pos_el[0] in proper_nouns:
+            pos_el = (pos_el[0], proper_nouns[pos_el[0]])
+        result_pos.append(pos_el)
+    return result_pos
