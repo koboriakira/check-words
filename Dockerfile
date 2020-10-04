@@ -6,6 +6,7 @@ ADD my_dictionary /work/my_dictionary
 # ADD tests /work/tests
 # ADD requirements.txt /work/requirements.txt
 ADD Pipfile /work/Pipfile
+ADD Pipfile.lock /work/Pipfile.lock
 RUN pip install --upgrade pip && \
   pip install --no-cache-dir pipenv && \
   pipenv lock -r > /work/requirements.txt && \
@@ -13,6 +14,6 @@ RUN pip install --upgrade pip && \
 
 # ADD nltk_data
 ADD nltk_setup.py /work/nltk_setup.py
-RUN python nltk_setup.py
+RUN python -m nltk_setup
 
 CMD ["uvicorn","my_dictionary.main:app","--host","0.0.0.0","--port","8080"]

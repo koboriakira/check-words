@@ -10,6 +10,7 @@ services:
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=/work/credentials.json
     command: >
+      python -m
       uvicorn my_dictionary.main:app
       --host 0.0.0.0
       --port 8080
