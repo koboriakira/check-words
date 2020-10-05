@@ -38,7 +38,12 @@ def hello():
 @app.post("/analyse/")
 def analyse(data: Data):
     print(data.text)
-    return controller.analyse(text=data.text)
+    try:
+        return controller.analyse(text=data.text)
+    except LookupError as e:
+        print(e)
+        print(e.args)
+        return {"error": "LookupError"}
 
 
 @app.post("/analyse-site/")
