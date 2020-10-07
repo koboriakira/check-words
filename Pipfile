@@ -4,15 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
+autopep8 = "*"
+pytest = "*"
 
 [packages]
 nltk = "*"
 uvicorn = "*"
 fastapi = "*"
 ngsl = "*"
-flake8 = "*"
-autopep8 = "*"
-pytest = "*"
 numpy = "*"
 pydantic = "*"
 googletrans = "*"

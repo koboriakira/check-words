@@ -1,6 +1,6 @@
 FROM python:3.8.5-slim
 
-WORKDIR work
+WORKDIR /work
 
 ADD my_dictionary /work/my_dictionary
 # ADD tests /work/tests
