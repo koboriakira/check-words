@@ -51,6 +51,10 @@ def analyse_site(data: Url):
     print(data.url)
     text = get_text(url=data.url)
     result = controller.analyse(text=text)
+    controller.add_word_list(
+        url=data.url,
+        ngsl_words=result['ngsl_word_list'],
+        not_ngsl_words=result['not_ngsl_word_list'])
     result['text'] = text
     return result
 

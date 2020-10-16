@@ -12,11 +12,12 @@ pytest = "*"
 nltk = "*"
 uvicorn = "*"
 fastapi = "*"
-ngsl = "*"
+ngsl = "==1.4"
 numpy = "*"
 pydantic = "*"
 googletrans = "*"
 koboriakira-translate-bookmark = "==1.5"
+requests = "*"
 
 [requires]
 python_version = "3.8"
