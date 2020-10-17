@@ -3,7 +3,6 @@ from googletrans import Translator
 import ngsl
 from ngsl import Result
 from my_dictionary.morphy import morphy, pos, proper_noun
-from my_dictionary.ngsl import classify_into_ngsl
 from my_dictionary.model.line import Line
 from my_dictionary import api
 

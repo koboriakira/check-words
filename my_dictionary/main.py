@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional, Dict, List
+from typing import Optional
 from my_dictionary import controller
 from pydantic import BaseModel
 from translate_bookmark.translate_bookmark import get_text
