@@ -7,6 +7,7 @@ import re
 from my_dictionary.model.word import Word
 from my_dictionary.model.sentence import Sentence
 from my_dictionary.model.line import Line
+import ngsl
 
 
 def morphy(text: str) -> Dict[str, int]:
@@ -15,7 +16,7 @@ def morphy(text: str) -> Dict[str, int]:
     # tokens_set = set(tokens)
     rtokens: Dict[str, int] = {}
     for token in token_counts:
-        rtoken = wordnet.morphy(token)
+        rtoken = ngsl.get_infinitiv(wordnet.morphy(token))
         if rtoken is None:
             continue
         if _is_number(token=str(rtoken)):
