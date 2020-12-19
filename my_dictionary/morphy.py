@@ -13,10 +13,10 @@ import ngsl
 def morphy(text: str) -> Dict[str, int]:
     tokens = nltk.word_tokenize(text)
     token_counts = _count(tokens=tokens)
-    # tokens_set = set(tokens)
     rtokens: Dict[str, int] = {}
     for token in token_counts:
-        rtoken = ngsl.get_infinitiv(wordnet.morphy(token))
+        rtoken = wordnet.morphy(token)
+        rtoken = ngsl.get_infinitiv(rtoken) if ngsl.include(rtoken) else rtoken
         if rtoken is None:
             continue
         if _is_number(token=str(rtoken)):
